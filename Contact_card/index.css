@@ -1,0 +1,4 @@
+@font-face {
+    font-family: 'CardFont';
+    src: local('MyFont'), url(card_font.otf) format('otf');
+  }

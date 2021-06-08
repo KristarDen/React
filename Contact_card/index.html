@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Document</title>
+</head>
+
+<body>
+
+    <div id="app"> </div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class User {
+            id;
+            first_name = "";
+            last_name = "";
+            avatar_ImgSorce = "";
+            description = "";
+            born_date ;
+
+            default_AvatarSrc = "default_avatar.png";
+
+            constructor(ID, FirstName, LastName, AvatarImgSorce, Description, BornDate) {
+
+                this.id = ID;
+
+                if (FirstName != "") {
+                    this.first_name = FirstName;
+                }
+                else {
+                    throw "FirstName data is invalid";
+                }
+
+                if (LastName != "") {
+                    this.last_name = LastName;
+                }
+                else {
+                    throw "LastName data is invalid";
+                }
+
+                if (AvatarImgSorce != "") {
+                    this.avatar_ImgSorce = AvatarImgSorce;
+                }
+                else {
+                    this.avatar_ImgSorce = this.default_AvatarSrc;
+                }
+
+                if (Description != "") {
+                    this.description = Description;
+                }
+                else {
+                    throw "Description data is invalid";
+                }
+
+                if (BornDate > Date.now()){
+                    throw "Born date can't be bigger that date now";
+                }
+                else{
+                    this.born_date = BornDate;
+                }
+
+
+            }
+
+        }
+
+        let user = new User(1, "Venia", "Boltsman", "", "Just a simple man =)", new Date('December 17, 1995 03:24:00'));
+
+        
+
+        ReactDOM.render(
+            <div id={user.id} style={{border: '1px solid gray',borderRadius: 10, padding: 10, display: 'inline-block', flexDirection: 'column'}}>
+
+                <h2 style={{fontFamily: 'Trebuchet MS, sans-serif'}}>{user.first_name} {user.last_name}</h2>
+
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <img src={user.avatar_ImgSorce} style={{width: 200, heigth: 200, borderRadius: '50%'}}/>
+                    <div>{user.description}</div>
+                </div>
+                
+            </div>, 
+            document.getElementById("app")
+        )
+    </script>
+</body>
+
+</html>
